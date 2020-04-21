@@ -2,11 +2,10 @@ package com.devdogs.devdogs;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.ActionBar;
-import android.os.Build;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.view.WindowManager;
+import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -15,11 +14,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        View decorView = getWindow().getDecorView();
-        int uiOptions = View.SYSTEM_UI_FLAG_FULLSCREEN;
-        decorView.setSystemUiVisibility(uiOptions);
-        if(getSupportActionBar() != null){
-            this.getSupportActionBar().hide();
-        }
+        Button joinButton = findViewById(R.id.joinButton);
+        joinButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent registerIntent = new Intent(getApplicationContext(), RegisterActivity.class);
+                startActivity(registerIntent);
+            }
+        });
     }
 }
