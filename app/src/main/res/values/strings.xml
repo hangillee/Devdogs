@@ -3,8 +3,9 @@
     <string name="app_name_kr">개발자들</string>
     <string name="app_logo">Logo</string>
     <string name="login_button">로그인</string>
-    <string name="join_button">회원 가입</string>
+    <string name="register_button">회원 가입</string>
     <string name="since">Since 2016</string>
     <string name="email_input">이메일</string>
     <string name="password_input">비밀번호</string>
+    <string name="name_input">이름</string>
 </resources>

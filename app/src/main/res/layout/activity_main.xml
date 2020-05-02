@@ -38,25 +38,25 @@
         app:srcCompat="@drawable/intrologo" />
 
     <Button
-        android:id="@+id/loginButton"
+        android:id="@+id/login_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/login_button"
         android:textColor="@color/colorDevdogs"
         android:background="@drawable/button_background"
-        app:layout_constraintBottom_toTopOf="@+id/joinButton"
+        app:layout_constraintBottom_toTopOf="@+id/register_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/logoName"
         app:layout_constraintVertical_bias="0.831" />
 
     <Button
-        android:id="@+id/joinButton"
+        android:id="@+id/register_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="150dp"
         android:background="@drawable/button_background"
-        android:text="@string/join_button"
+        android:text="@string/register_button"
         android:textColor="@color/colorDevdogs"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -74,7 +74,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.500"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/joinButton"
+        app:layout_constraintTop_toBottomOf="@+id/register_button"
         app:layout_constraintVertical_bias="0.800" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

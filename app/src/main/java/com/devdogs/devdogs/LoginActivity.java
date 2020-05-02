@@ -8,7 +8,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.devdogs.devdogs.retroit.RegisterService;
+import com.devdogs.devdogs.retroit.LoginService;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -18,25 +18,24 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class RegisterActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity {
     private EditText email;
     private EditText password;
     private EditText name;
-    private Button registerButton;
+    private Button loginButton;
 
     Retrofit retrofit;
     Gson gson;
-    RegisterService service;
+    LoginService service;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_register);
+        setContentView(R.layout.activity_login);
 
         email = findViewById(R.id.email);
         password = findViewById(R.id.password);
-        name = findViewById(R.id.name);
-        registerButton = findViewById(R.id.register_button);
+        loginButton = findViewById(R.id.login_button);
 
         gson = new GsonBuilder().setLenient().create();
         retrofit = new Retrofit.Builder()
@@ -44,40 +43,38 @@ public class RegisterActivity extends AppCompatActivity {
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
 
-        service = retrofit.create(RegisterService.class);
+        service = retrofit.create(LoginService.class);
 
-        registerButton.setOnClickListener(new View.OnClickListener() {
+        loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String emailString = email.getText().toString().trim();
                 String passwordString = password.getText().toString().trim();
-                String nameString = name.getText().toString().trim();
 
-                if (emailString.isEmpty() || passwordString.isEmpty() || nameString.isEmpty()) {
+                if (emailString.isEmpty() || passwordString.isEmpty()) {
                     Toast.makeText(getApplicationContext(), "모든 값을 입력해야 합니다.", Toast.LENGTH_SHORT).show();
                 } else {
-                    submit(emailString, passwordString, nameString);
+                    submit(emailString, passwordString);
                 }
             }
         });
     }
-    public void submit(String email, String password, String nameString){
-        service.register(email, password, nameString).enqueue(new Callback<Void>(){
+    public void submit(String email, String password){
+        service.login(email, password).enqueue(new Callback<Void>(){
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 if(response.code() == 404){
-                    Toast.makeText(getApplicationContext(), "이미 가입되어 있는 이메일입니다.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "아이디나 비밀번호가 올바르지 않습니다.", Toast.LENGTH_SHORT).show();
                 }
                 else {
-                    Toast.makeText(getApplicationContext(), "회원가입에 성공했습니다.", Toast.LENGTH_SHORT).show();
-                    finish();
+                    Toast.makeText(getApplicationContext(), "로그인 성공", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
                 t.printStackTrace();
-                Toast.makeText(getApplicationContext(), "회원가입에 실패했습니다.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "로그인 실패", Toast.LENGTH_SHORT).show();
             }
         });
     }
