@@ -1,6 +1,7 @@
 package com.devdogs.devdogs;
 
 import android.os.Bundle;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -21,6 +22,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class RegisterActivity extends AppCompatActivity {
     private EditText email;
     private EditText password;
+    private EditText match_password;
     private EditText name;
     private Button registerButton;
 
@@ -35,6 +37,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         email = findViewById(R.id.email);
         password = findViewById(R.id.password);
+        match_password = findViewById(R.id.match_password);
         name = findViewById(R.id.name);
         registerButton = findViewById(R.id.register_button);
 
@@ -51,10 +54,15 @@ public class RegisterActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String emailString = email.getText().toString().trim();
                 String passwordString = password.getText().toString().trim();
+                String matchPassword = match_password.getText().toString().trim();
                 String nameString = name.getText().toString().trim();
 
                 if (emailString.isEmpty() || passwordString.isEmpty() || nameString.isEmpty()) {
                     Toast.makeText(getApplicationContext(), "모든 값을 입력해야 합니다.", Toast.LENGTH_SHORT).show();
+                } else if (!Patterns.EMAIL_ADDRESS.matcher(emailString).matches()) {
+                    Toast.makeText(getApplicationContext(), "유효한 이메일 형식이 아닙니다.", Toast.LENGTH_SHORT).show();
+                } else if (!passwordString.equals(matchPassword)) {
+                    Toast.makeText(getApplicationContext(), "비밀번호가 일치하지 않습니다.", Toast.LENGTH_SHORT).show();
                 } else {
                     submit(emailString, passwordString, nameString);
                 }
