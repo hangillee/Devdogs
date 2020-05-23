@@ -8,7 +8,7 @@
     tools:context=".MainActivity">
 
     <TextView
-        android:id="@+id/logoName"
+        android:id="@+id/title_main"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="300dp"
@@ -21,11 +21,11 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/logoView"
+        app:layout_constraintTop_toBottomOf="@id/logo_main"
         app:layout_constraintVertical_bias="0.181" />
 
     <ImageView
-        android:id="@+id/logoView"
+        android:id="@+id/logo_main"
         android:layout_width="200dp"
         android:layout_height="200dp"
         android:layout_marginTop="100dp"
@@ -38,20 +38,20 @@
         app:srcCompat="@drawable/intrologo" />
 
     <Button
-        android:id="@+id/login_button"
+        android:id="@+id/button_main_login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/login_button"
         android:textColor="@color/colorDevdogs"
         android:background="@drawable/button_background"
-        app:layout_constraintBottom_toTopOf="@+id/register_button"
+        app:layout_constraintBottom_toTopOf="@+id/button_main_register"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/logoName"
+        app:layout_constraintTop_toBottomOf="@+id/title_main"
         app:layout_constraintVertical_bias="0.831" />
 
     <Button
-        android:id="@+id/register_button"
+        android:id="@+id/button_main_register"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="150dp"
@@ -63,7 +63,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/since_main"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/starandyou"
@@ -74,7 +74,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.500"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/register_button"
+        app:layout_constraintTop_toBottomOf="@+id/button_main_register"
         app:layout_constraintVertical_bias="0.800" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

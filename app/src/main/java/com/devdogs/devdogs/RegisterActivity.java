@@ -35,11 +35,11 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        email = findViewById(R.id.email);
-        password = findViewById(R.id.password);
-        match_password = findViewById(R.id.match_password);
-        name = findViewById(R.id.name);
-        registerButton = findViewById(R.id.register_button);
+        email = findViewById(R.id.email_register);
+        password = findViewById(R.id.password_register);
+        match_password = findViewById(R.id.pw_register_matching);
+        name = findViewById(R.id.name_register);
+        registerButton = findViewById(R.id.button_register);
 
         gson = new GsonBuilder().setLenient().create();
         retrofit = new Retrofit.Builder()

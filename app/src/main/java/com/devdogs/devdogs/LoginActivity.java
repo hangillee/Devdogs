@@ -33,9 +33,9 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        email = findViewById(R.id.email);
-        password = findViewById(R.id.password);
-        loginButton = findViewById(R.id.login_button);
+        email = findViewById(R.id.email_login);
+        password = findViewById(R.id.password_login);
+        loginButton = findViewById(R.id.button_login);
 
         gson = new GsonBuilder().setLenient().create();
         retrofit = new Retrofit.Builder()
