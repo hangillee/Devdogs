@@ -9,4 +9,7 @@
     <string name="password_input">비밀번호</string>
     <string name="name_input">이름</string>
     <string name="match_password">비밀번호 확인</string>
+    <string name="title_input">제목</string>
+    <string name="content_input">내용</string>
+    <string name="submit_button">등록하기</string>
 </resources>
