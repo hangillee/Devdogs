@@ -9,10 +9,13 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.devdogs.devdogs.Cookie.AddCookies;
+import com.devdogs.devdogs.Cookie.StoreCookies;
 import com.devdogs.devdogs.retroit.LoginService;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import okhttp3.OkHttpClient;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -38,9 +41,17 @@ public class LoginActivity extends AppCompatActivity {
         password = findViewById(R.id.password_login);
         loginButton = findViewById(R.id.button_login);
 
+        OkHttpClient client = new OkHttpClient();
+        OkHttpClient.Builder builder = new OkHttpClient.Builder();
+
+        builder.addInterceptor(new AddCookies(this));
+        builder.addInterceptor(new StoreCookies(this));
+        client = builder.build();
+
         gson = new GsonBuilder().setLenient().create();
         retrofit = new Retrofit.Builder()
                 .baseUrl("http://" + DATA.getURL() + "/")
+                .client(client)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
 
@@ -69,7 +80,7 @@ public class LoginActivity extends AppCompatActivity {
                 }
                 else {
                     Toast.makeText(getApplicationContext(), "로그인 성공", Toast.LENGTH_SHORT).show();
-                    Intent submitIntent = new Intent(getApplicationContext(), SubmitActivity.class);
+                    Intent submitIntent = new Intent(getApplicationContext(), MainActivity.class);
                     startActivity(submitIntent);
                 }
             }

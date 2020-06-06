@@ -6,7 +6,7 @@ import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.POST;
 
 public interface RegisterService {
-    @POST("register")
+    @POST("users/register")
     @FormUrlEncoded
     Call<Void> register(@Field("id") String id, @Field("pw") String pw, @Field("name") String name);
 }
