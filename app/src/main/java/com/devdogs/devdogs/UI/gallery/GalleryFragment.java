@@ -1,4 +1,4 @@
-package com.devdogs.devdogs.ui.gallery;
+package com.devdogs.devdogs.UI.gallery;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

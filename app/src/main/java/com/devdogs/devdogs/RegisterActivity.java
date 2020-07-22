@@ -9,15 +9,12 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.devdogs.devdogs.retroit.RegisterService;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+import com.devdogs.devdogs.Retrofit.RegisterService;
+import com.devdogs.devdogs.Retrofit.RetrofitSingleton;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RegisterActivity extends AppCompatActivity {
     private EditText email;
@@ -26,8 +23,6 @@ public class RegisterActivity extends AppCompatActivity {
     private EditText name;
     private Button registerButton;
 
-    Retrofit retrofit;
-    Gson gson;
     RegisterService service;
 
     @Override
@@ -41,13 +36,7 @@ public class RegisterActivity extends AppCompatActivity {
         name = findViewById(R.id.name_register);
         registerButton = findViewById(R.id.button_register);
 
-        gson = new GsonBuilder().setLenient().create();
-        retrofit = new Retrofit.Builder()
-                .baseUrl("http://" + DATA.getURL() + "/")
-                .addConverterFactory(GsonConverterFactory.create(gson))
-                .build();
-
-        service = retrofit.create(RegisterService.class);
+        service = RetrofitSingleton.getInstance().retrofit.create(RegisterService.class);
 
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override

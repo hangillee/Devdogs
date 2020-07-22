@@ -16,7 +16,7 @@
             android:name=".MainActivity"
             android:label="@string/title_activity_main"
             android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name=".ui.home.SubmitFragment" />
+        <activity android:name=".UI.home.SubmitFragment" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".IntroActivity">

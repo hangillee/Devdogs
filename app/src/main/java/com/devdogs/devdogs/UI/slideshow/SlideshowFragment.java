@@ -1,4 +1,4 @@
-package com.devdogs.devdogs.ui.slideshow;
+package com.devdogs.devdogs.UI.slideshow;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

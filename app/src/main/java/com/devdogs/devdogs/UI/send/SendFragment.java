@@ -1,4 +1,4 @@
-package com.devdogs.devdogs.ui.send;
+package com.devdogs.devdogs.UI.send;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

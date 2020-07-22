@@ -8,18 +8,18 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+import com.devdogs.devdogs.Retrofit.LoginService;
+import com.devdogs.devdogs.Retrofit.RetrofitSingleton;
 
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class IntroActivity extends AppCompatActivity {
+    LoginService service;
+
     private final long FINISH_INTERVAL_TIME = 2000;
     private long backPressedTime = 0;
-
-    Retrofit retrofit;
-    Gson gson;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,11 +30,10 @@ public class IntroActivity extends AppCompatActivity {
         memes.clear().apply();
         memes.commit();*/
 
-        gson = new GsonBuilder().setLenient().create();
-        retrofit = new Retrofit.Builder()
-                .baseUrl("http://" + DATA.getURL() + "/")
-                .addConverterFactory(GsonConverterFactory.create(gson))
-                .build();
+        RetrofitSingleton.getInstance(this);
+
+        service = RetrofitSingleton.getInstance().retrofit.create(LoginService.class);
+        this.submit("1", "1");
 
         Button loginButton = findViewById(R.id.button_main_login);
         loginButton.setOnClickListener(new View.OnClickListener(){
@@ -69,5 +68,26 @@ public class IntroActivity extends AppCompatActivity {
             backPressedTime = tempTime;
             Toast.makeText(getApplicationContext(), "한 번 더 누르면 종료됩니다.", Toast.LENGTH_SHORT).show();
         }
+    }
+    public void submit(String email, String password){
+        service.login(email, password).enqueue(new Callback<Void>(){
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if(response.code() == 404){
+                    Toast.makeText(getApplicationContext(), "아이디나 비밀번호가 올바르지 않습니다.", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    Toast.makeText(getApplicationContext(), "로그인 성공", Toast.LENGTH_SHORT).show();
+                    Intent submitIntent = new Intent(getApplicationContext(), MainActivity.class);
+                    startActivity(submitIntent);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                t.printStackTrace();
+                Toast.makeText(getApplicationContext(), "자동 로그인 실패", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }

@@ -1,4 +1,4 @@
-package com.devdogs.devdogs.ui.home;
+package com.devdogs.devdogs.UI.home;
 
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -15,7 +15,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.devdogs.devdogs.MainActivity;
 import com.devdogs.devdogs.R;
-import com.devdogs.devdogs.retroit.Submit;
+import com.devdogs.devdogs.Retrofit.Submit;
 
 import java.util.ArrayList;
 import java.util.HashSet;

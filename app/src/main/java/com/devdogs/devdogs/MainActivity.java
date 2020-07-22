@@ -17,8 +17,8 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.devdogs.devdogs.Cookie.AddCookies;
 import com.devdogs.devdogs.Cookie.StoreCookies;
-import com.devdogs.devdogs.retroit.SubmitService;
-import com.devdogs.devdogs.ui.home.HomeFragment;
+import com.devdogs.devdogs.Retrofit.SubmitService;
+import com.devdogs.devdogs.UI.home.HomeFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.gson.Gson;

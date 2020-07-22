@@ -1,4 +1,4 @@
-package com.devdogs.devdogs.retroit;
+package com.devdogs.devdogs.Retrofit;
 
 import retrofit2.Call;
 import retrofit2.http.Field;

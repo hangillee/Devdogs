@@ -1,4 +1,4 @@
-package com.devdogs.devdogs.ui.home;
+package com.devdogs.devdogs.UI.home;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -11,7 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.devdogs.devdogs.R;
-import com.devdogs.devdogs.retroit.Submit;
+import com.devdogs.devdogs.Retrofit.Submit;
 
 import java.util.List;
 

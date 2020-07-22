@@ -1,4 +1,4 @@
-package com.devdogs.devdogs.ui.tools;
+package com.devdogs.devdogs.UI.tools;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

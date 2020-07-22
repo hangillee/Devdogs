@@ -1,4 +1,4 @@
-package com.devdogs.devdogs.retroit;
+package com.devdogs.devdogs.Retrofit;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

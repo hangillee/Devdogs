@@ -1,4 +1,4 @@
-package com.devdogs.devdogs.ui.home;
+package com.devdogs.devdogs.UI.home;
 
 import android.os.Bundle;
 import android.preference.PreferenceManager;
