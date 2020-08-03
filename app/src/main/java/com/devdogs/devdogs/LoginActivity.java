@@ -60,6 +60,7 @@ public class LoginActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "로그인 성공", Toast.LENGTH_SHORT).show();
                     Intent submitIntent = new Intent(getApplicationContext(), MainActivity.class);
                     startActivity(submitIntent);
+                    finish();
                 }
             }
 

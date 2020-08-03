@@ -1,44 +1,42 @@
 package com.devdogs.devdogs;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
+import androidx.navigation.NavDestination;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
-import com.devdogs.devdogs.Cookie.AddCookies;
-import com.devdogs.devdogs.Cookie.StoreCookies;
+import com.devdogs.devdogs.Retrofit.RetrofitSingleton;
 import com.devdogs.devdogs.Retrofit.SubmitService;
 import com.devdogs.devdogs.UI.home.HomeFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-
-import okhttp3.OkHttpClient;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
     private final long FINISH_INTERVAL_TIME = 2000;
     private long backPressedTime = 0;
     private AppBarConfiguration mAppBarConfiguration;
 
-    Retrofit retrofit;
-    Gson gson;
     public static SubmitService service;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        service = RetrofitSingleton.getInstance().retrofit.create(SubmitService.class);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -49,30 +47,28 @@ public class MainActivity extends AppCompatActivity {
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow,
-                R.id.nav_tools, R.id.nav_share, R.id.nav_send)
+                R.id.nav_tools, R.id.nav_share, R.id.nav_logout)
                 .setDrawerLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
 
-        OkHttpClient client = new OkHttpClient();
-        OkHttpClient.Builder builder = new OkHttpClient.Builder();
-
-        builder.addInterceptor(new AddCookies(this));
-        builder.addInterceptor(new StoreCookies(this));
-        client = builder.build();
-
-        gson = new GsonBuilder().setLenient().create();
-        retrofit = new Retrofit.Builder()
-                .baseUrl("http://" + DATA.getURL() + "/")
-                .client(client)
-                .addConverterFactory(GsonConverterFactory.create(gson))
-                .build();
-
-        service = retrofit.create(SubmitService.class);
-
-
+        navController.addOnDestinationChangedListener(new NavController.OnDestinationChangedListener() {
+            @Override
+            public void onDestinationChanged(@NonNull NavController controller, @NonNull NavDestination destination, @Nullable Bundle arguments) {
+                switch (destination.getLabel().toString()){
+                    case "로그아웃":
+                        finish();
+                        Intent intent = new Intent(getApplicationContext(), IntroActivity.class);
+                        startActivity(intent);
+                        SharedPreferences.Editor memes = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit();
+                        memes.clear();
+                        memes.commit();
+                        break;
+                }
+            }
+        });
 
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
