@@ -59,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
             public void onDestinationChanged(@NonNull NavController controller, @NonNull NavDestination destination, @Nullable Bundle arguments) {
                 switch (destination.getLabel().toString()){
                     case "로그아웃":
+                        IntroActivity.isLogin = false;
                         finish();
                         Intent intent = new Intent(getApplicationContext(), IntroActivity.class);
                         startActivity(intent);

@@ -57,8 +57,10 @@ public class LoginActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "아이디나 비밀번호가 올바르지 않습니다.", Toast.LENGTH_SHORT).show();
                 }
                 else {
+                    IntroActivity.isLogin = true;
                     Toast.makeText(getApplicationContext(), "로그인 성공", Toast.LENGTH_SHORT).show();
                     Intent submitIntent = new Intent(getApplicationContext(), MainActivity.class);
+                    submitIntent.addFlags(submitIntent.FLAG_ACTIVITY_CLEAR_TASK | submitIntent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(submitIntent);
                     finish();
                 }

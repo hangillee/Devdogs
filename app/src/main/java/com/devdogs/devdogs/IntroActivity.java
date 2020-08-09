@@ -20,6 +20,7 @@ public class IntroActivity extends AppCompatActivity {
 
     private final long FINISH_INTERVAL_TIME = 2000;
     private long backPressedTime = 0;
+    static boolean isLogin = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,8 +33,10 @@ public class IntroActivity extends AppCompatActivity {
 
         RetrofitSingleton.getInstance(this);
 
-        service = RetrofitSingleton.getInstance().retrofit.create(LoginService.class);
-        this.submit("1", "1");
+        if (isLogin == true) {
+            service = RetrofitSingleton.getInstance().retrofit.create(LoginService.class);
+            this.submit("1", "1");
+        }
 
         Button loginButton = findViewById(R.id.button_main_login);
         loginButton.setOnClickListener(new View.OnClickListener(){
@@ -80,6 +83,7 @@ public class IntroActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "로그인 성공", Toast.LENGTH_SHORT).show();
                     Intent submitIntent = new Intent(getApplicationContext(), MainActivity.class);
                     startActivity(submitIntent);
+                    finish();
                 }
             }
 
